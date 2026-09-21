@@ -1,9 +1,9 @@
 require_relative "question"
 
 questions = [
-  Question.new("Vad heter huvudstaden i Norge?", "Oslo"),
-  Question.new("Vilket år släpptes Ruby 1.0?", "1996"),
-  Question.new("Vad svarar 5.class?", "Integer"),
+  Question.new("What's the first Pokémon in the pokédex?", "Bulbasaur"),
+  Question.new("What is Pikachu's pokédex number?", "25"),
+  Question.new("Who is number 52 in the pokédex?", "Meowth"),
 ]
 
 score = 0
@@ -11,11 +11,15 @@ score = 0
 questions.each do |q|
   reply = q.ask
   if q.correct?(reply)
-    puts "Rätt!"
+    puts "Correct!"
+    score += 1
+  elsif
+    q.hinted(reply).strip.downcase == q.answer.downcase
+    puts "Correct!"
     score += 1
   else
-    puts "Fel. Rätt svar: #{q.answer}"
+    puts "Wrong. Correct answer: #{q.answer}"
   end
 end
 
-puts "#{score} av #{questions.length} rätt."
+puts "#{score} out of #{questions.length} correct."
