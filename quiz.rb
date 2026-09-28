@@ -1,9 +1,11 @@
 require_relative "question"
+require_relative "multiple_choice"
 
 questions = [
   Question.new("What's the first Pokémon in the pokédex?", "Bulbasaur"),
   Question.new("What is Pikachu's pokédex number?", "25"),
   Question.new("Who is number 52 in the pokédex?", "Meowth"),
+  MultipleChoice.new("What Pokémon is nr. 4 in the pokédex?", ["Bulbasaur", "Charmander", "Squirtle", "Pikachu"], "Charmander")
 ]
 
 score = 0
