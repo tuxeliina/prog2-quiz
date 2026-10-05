@@ -1,27 +1,43 @@
-require_relative "question"
-require_relative "multiple_choice"
+class Quiz
+  def initialize
+    @score = 0
+    @questions = []
+  end
 
-questions = [
-  Question.new("What's the first Pokémon in the pokédex?", "Bulbasaur"),
-  Question.new("What is Pikachu's pokédex number?", "25"),
-  Question.new("Who is number 52 in the pokédex?", "Meowth"),
-  MultipleChoice.new("What Pokémon is nr. 4 in the pokédex?", ["Bulbasaur", "Charmander", "Squirtle", "Pikachu"], "Charmander")
-]
+  def questions
+    @questions
+  end
 
-score = 0
+  def score
+    @score
+  end
 
-questions.each do |q|
-  reply = q.ask
-  if q.correct?(reply)
-    puts "Correct!"
-    score += 1
-  elsif
-    q.hinted(reply).strip.downcase == q.answer.downcase
-    puts "Correct!"
-    score += 1
-  else
-    puts "Wrong. Correct answer: #{q.answer}"
+  # add a new question
+  def add(question)
+    questions << question
+  end
+
+  # how many questions are there in the quiz
+  def total
+    @questions.length
+  end
+
+  # run the questions
+  def run
+    questions.each do |q|
+      reply = q.ask
+      if q.correct?(reply)
+        puts "Correct!"
+        @score += 1
+      elsif
+        q.hinted(reply).strip.downcase == q.answer.downcase
+        puts "Correct!"
+        @score += 1
+      else
+        puts "Wrong. Correct answer: #{q.answer}"
+      end
+    end
+
+    puts "#{@score} out of #{@questions.length} correct."
   end
 end
-
-puts "#{score} out of #{questions.length} correct."

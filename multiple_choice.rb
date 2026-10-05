@@ -41,6 +41,6 @@ class MultipleChoice
   end
 
   def correct?(reply)
-    alternatives[reply.to_i] == answer
+    alternatives[(reply.to_i) - 1] == answer
   end
 end
